@@ -1,72 +1,91 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect } from "react";
 import { X } from "lucide-react";
+
 import Logo from "@/components/shared/Logo";
-import { NAVIGATION } from "@/constants/navigation";
+import NavLinks from "./NavLinks";
+import HeaderActions from "./HeaderActions";
 
 interface MobileMenuProps {
   isOpen: boolean;
-    currentPath: string;
-      onClose: () => void;
+  currentPath: string;
+  onClose: () => void;
+}
+
+export default function MobileMenu({
+  isOpen,
+  currentPath,
+  onClose,
+}: MobileMenuProps) {
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
       }
+    };
 
-      export default function MobileMenu({
-        isOpen,
-          currentPath,
-            onClose,
-            }: MobileMenuProps) {
-              if (!isOpen) return null;
+    window.addEventListener("keydown", handleEscape);
 
-                return (
-                    <>
-                          {/* Backdrop */}
-                                <div
-                                        onClick={onClose}
-                                                className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-                                                      />
+    return () =>
+      window.removeEventListener("keydown", handleEscape);
+  }, [onClose]);
 
-                                                            {/* Drawer */}
-                                                                  <aside className="fixed right-0 top-0 z-50 flex h-screen w-[85%] max-w-sm flex-col bg-white shadow-2xl">
-                                                                          <div className="flex items-center justify-between border-b p-5">
-                                                                                    <Logo />
+  return (
+    <>
+      {/* Overlay */}
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-all duration-300 ${
+          isOpen
+            ? "visible opacity-100"
+            : "invisible opacity-0"
+        }`}
+      />
 
-                                                                                              <button
-                                                                                                          onClick={onClose}
-                                                                                                                      aria-label="Close menu"
-                                                                                                                                  className="rounded-lg p-2 transition hover:bg-gray-100"
-                                                                                                                                            >
-                                                                                                                                                        <X size={22} />
-                                                                                                                                                                  </button>
-                                                                                                                                                                          </div>
+      {/* Drawer */}
+      <aside
+        className={`fixed top-0 right-0 z-50 flex h-screen w-[85%] max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-gray-100 p-5">
+          <Logo />
 
-                                                                                                                                                                                  <nav className="flex flex-1 flex-col p-6">
-                                                                                                                                                                                            {NAVIGATION.map((item) => (
-                                                                                                                                                                                                        <Link
-                                                                                                                                                                                                                      key={item.href}
-                                                                                                                                                                                                                                    href={item.href}
-                                                                                                                                                                                                                                                  onClick={onClose}
-                                                                                                                                                                                                                                                                className={`rounded-lg px-4 py-3 text-base font-medium transition ${
-                                                                                                                                                                                                                                                                                currentPath === item.href
-                                                                                                                                                                                                                                                                                                  ? "bg-brand-gold text-white"
-                                                                                                                                                                                                                                                                                                                    : "text-gray-700 hover:bg-gray-100"
-                                                                                                                                                                                                                                                                                                                                  }`}
-                                                                                                                                                                                                                                                                                                                                              >
-                                                                                                                                                                                                                                                                                                                                                            {item.label}
-                                                                                                                                                                                                                                                                                                                                                                        </Link>
-                                                                                                                                                                                                                                                                                                                                                                                  ))}
-                                                                                                                                                                                                                                                                                                                                                                                          </nav>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={onClose}
+            className="rounded-lg p-2 transition hover:bg-gray-100"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
 
-                                                                                                                                                                                                                                                                                                                                                                                                  <div className="border-t p-6">
-                                                                                                                                                                                                                                                                                                                                                                                                            <Link
-                                                                                                                                                                                                                                                                                                                                                                                                                        href="/book-site-visit"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    onClick={onClose}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                className="block rounded-xl bg-brand-gold px-4 py-3 text-center font-semibold text-white transition hover:bg-brand-goldHover"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                          >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Book Site Visit
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </Link>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </aside>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    );
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
+        {/* Navigation */}
+        <div className="flex-1 overflow-y-auto px-5 py-8">
+          <div className="flex flex-col gap-2">
+            <NavLinks
+              pathname={currentPath}
+              onNavigate={onClose}
+            />
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-gray-100 p-5">
+          <HeaderActions />
+        </div>
+      </aside>
+    </>
+  );
+}
