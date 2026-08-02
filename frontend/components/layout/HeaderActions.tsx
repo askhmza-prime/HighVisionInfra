@@ -1,32 +1,53 @@
 "use client";
 
 import Link from "next/link";
-import Phone from "lucide-react/dist/esm/icons/phone";
-import CalendarDays from "lucide-react/dist/esm/icons/calendar-days";
+import { CalendarDays, Phone } from "lucide-react";
 
 import SITE from "@/constants/site";
+import { cn } from "@/lib/utils";
 
-export default function HeaderActions() {
+interface HeaderActionsProps {
+  mobile?: boolean;
+}
+
+export default function HeaderActions({
+  mobile = false,
+}: HeaderActionsProps) {
   return (
-      <div className="flex items-center gap-3">
-            {/* Call Button */}
-                  <a
-                          href={`tel:${SITE.phone}`}
-                                  aria-label="Call High Vision Infra"
-                                          className="hidden xl:flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-brand-gold hover:text-brand-emerald"
-                                                >
-                                                        <Phone className="h-4 w-4 text-brand-gold" />
-                                                                <span>{SITE.phone}</span>
-                                                                      </a>
+    <div
+      className={cn(
+        "flex gap-3",
+        mobile ? "flex-col" : "items-center"
+      )}
+    >
+      <a
+        href={`tel:${SITE.phone}`}
+        className={cn(
+          "inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white font-medium text-gray-700 transition-all duration-300 hover:border-brand-gold hover:text-brand-emerald",
 
-                                                                            {/* Book Site Visit */}
-                                                                                  <Link
-                                                                                          href="/book-site-visit"
-                                                                                                  className="inline-flex items-center gap-2 rounded-xl bg-brand-gold px-5 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-brand-goldHover hover:shadow-lg active:scale-[0.98]"
-                                                                                                        >
-                                                                                                                <CalendarDays className="h-4 w-4" />
-                                                                                                                        <span>Book Site Visit</span>
-                                                                                                                              </Link>
-                                                                                                                                  </div>
-                                                                                                                                    );
-                                                                                                                                    }
+          mobile
+            ? "w-full px-4 py-3"
+            : "hidden xl:inline-flex px-4 py-2 text-sm"
+        )}
+      >
+        <Phone className="h-4 w-4 text-brand-gold" />
+        <span>{SITE.phone}</span>
+      </a>
+
+      <Link
+        href="/book-site-visit"
+        className={cn(
+          "inline-flex items-center justify-center gap-2 rounded-xl bg-brand-gold font-semibold text-white shadow-sm transition-all duration-300 hover:bg-brand-goldHover hover:shadow-lg",
+
+          mobile
+            ? "w-full px-4 py-3"
+            : "px-5 py-3 text-sm"
+        )}
+      >
+        <CalendarDays className="h-4 w-4" />
+
+        <span>Book Site Visit</span>
+      </Link>
+    </div>
+  );
+}
