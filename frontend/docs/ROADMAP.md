@@ -1,4 +1,4 @@
-# High Vision Infra v2 Roadmap
+# High Vision Infra Roadmap
 
 ## Phase 1 — Premium Frontend (Current)
 
