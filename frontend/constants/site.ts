@@ -1,126 +1,17 @@
-import { Project, Testimonial, NavLink } from "@/types";
-
-export const SITE_DETAILS = {
+export const SITE = {
   name: "High Vision Infra",
-  tagline: "Building Dreams. Creating Value.",
-  phone: "+91 98765 43210",
+
+  shortName: "HVI",
+
+  tagline: "Where Luxury Meets Comfort",
+
+  phone: "+91-99971-78833",
+
   email: "info@highvisioninfra.com",
-  address: "High Vision Infra, Moradabad / Hyderabad, India",
+
+  address: "",
+
+  copyright: `© ${new Date().getFullYear()} High Vision Infra`,
 };
 
-export const NAV_LINKS: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Contact", href: "/contact" },
-];
-
-export const PROJECTS_DATA: Project[] = [
-  {
-    id: "proj-1",
-    slug: "signature-residency",
-    title: "Signature Residency",
-    location: "Shadnagar, Hyderabad",
-    startingPrice: "₹15.99 Lakh",
-    pricePerSqYd: "₹15,950 / Sq. Yd.",
-    type: "Residential",
-    coverImage: "/images/projects/signature-residency.jpg",
-    galleryImages: [
-      "/images/projects/sig-1.jpg",
-      "/images/projects/sig-2.jpg",
-      "/images/projects/sig-3.jpg",
-    ],
-    description:
-      "Signature Residency is a premium plotted development located in the fast-developing area of Shadnagar. With excellent connectivity, clear titles, and world-class infrastructure.",
-    sqYardsRange: "120 - 300 Sq. Yards",
-    approvalStatus: "HMDA Approved",
-    bankLoanAvailable: true,
-    highlights: [
-      "Prime Location",
-      "Wide Black Top Roads",
-      "Underground Drainage",
-      "Avenue Plantation",
-      "Children's Play Area",
-      "24/7 Security",
-    ],
-    isFeatured: true,
-  },
-  {
-    id: "proj-2",
-    slug: "green-valley",
-    title: "Green Valley",
-    location: "Kadthal, Hyderabad",
-    startingPrice: "₹12.49 Lakh",
-    type: "Residential",
-    coverImage: "/images/projects/green-valley.jpg",
-    galleryImages: [],
-    description: "A tranquil gated community surrounded by lush greenery.",
-    sqYardsRange: "150 - 400 Sq. Yards",
-    approvalStatus: "DTCP Approved",
-    bankLoanAvailable: true,
-    highlights: ["Gated Community", "Clubhouse", "Parks"],
-    isFeatured: true,
-  },
-  {
-    id: "proj-3",
-    slug: "high-vision-county",
-    title: "High Vision County",
-    location: "Yadagirigutta, Hyderabad",
-    startingPrice: "₹10.99 Lakh",
-    type: "Residential",
-    coverImage: "/images/projects/high-vision-county.jpg",
-    galleryImages: [],
-    description: "Affordable luxury plots close to major highway corridors.",
-    sqYardsRange: "120 - 250 Sq. Yards",
-    approvalStatus: "100% Clear Title",
-    bankLoanAvailable: true,
-    highlights: ["Clear Title", "Immediate Registration"],
-    isFeatured: true,
-  },
-  {
-    id: "proj-4",
-    slug: "royal-enclave",
-    title: "Royal Enclave",
-    location: "Jadcherla, Hyderabad",
-    startingPrice: "₹18.49 Lakh",
-    type: "Premium",
-    coverImage: "/images/projects/royal-enclave.jpg",
-    galleryImages: [],
-    description: "Exclusive luxury plot enclave for modern villa construction.",
-    sqYardsRange: "200 - 500 Sq. Yards",
-    approvalStatus: "HMDA Approved",
-    bankLoanAvailable: true,
-    highlights: ["30ft Wide Roads", "Street Lights", "Water Pipeline"],
-    isFeatured: true,
-  },
-];
-
-export const TESTIMONIALS_DATA: Testimonial[] = [
-  {
-    id: "test-1",
-    name: "Ravi Kumar",
-    role: "Property Owner",
-    comment:
-      "High Vision Infra made my investment journey smooth and transparent. Highly recommended!",
-    rating: 5,
-  },
-  {
-    id: "test-2",
-    name: "Sunita Reddy",
-    role: "Home Buyer",
-    comment:
-      "Excellent projects, prime locations, and great support from the team.",
-    rating: 5,
-  },
-  {
-    id: "test-3",
-    name: "Arun Prakash",
-    role: "Investor",
-    comment:
-      "Very professional team and well-planned layouts. Happy to be a part of High Vision family.",
-    rating: 5,
-  },
-];
-
+export default SITE;
