@@ -1,4 +1,4 @@
-# High Vision Infra v2
+# High Vision Infra
 
 ## Project Report
 
