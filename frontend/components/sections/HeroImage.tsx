@@ -1,0 +1,60 @@
+import Image from "next/image";
+
+export default function HeroImage() {
+  return (
+      <div className="relative flex justify-center lg:justify-end">
+            {/* Main Image */}
+                  <div className="relative w-full max-w-[560px] overflow-hidden rounded-3xl border border-brand-border bg-white shadow-2xl">
+                          <Image
+                                    src="/images/hero/hero-banner.jpg"
+                                              alt="High Vision Infra Premium Township"
+                                                        width={900}
+                                                                  height={700}
+                                                                            priority
+                                                                                      className="h-full w-full object-cover"
+                                                                                              />
+
+                                                                                                      {/* Gradient Overlay */}
+                                                                                                              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+                                                                                                                      {/* Bottom Information */}
+                                                                                                                              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                                                                                                                        <span className="inline-flex rounded-full bg-brand-gold px-3 py-1 text-xs font-semibold">
+                                                                                                                                                    Featured Project
+                                                                                                                                                              </span>
+
+                                                                                                                                                                        <h3 className="mt-3 text-2xl font-bold">
+                                                                                                                                                                                    Signature Residency
+                                                                                                                                                                                              </h3>
+
+                                                                                                                                                                                                        <p className="mt-2 text-sm text-gray-200">
+                                                                                                                                                                                                                    Premium gated community with world-class amenities and
+                                                                                                                                                                                                                                excellent connectivity.
+                                                                                                                                                                                                                                          </p>
+                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                                                                              {/* Floating Price Card */}
+                                                                                                                                                                                                                                                                    <div className="absolute -left-4 top-8 rounded-2xl border border-brand-border bg-white p-4 shadow-xl">
+                                                                                                                                                                                                                                                                            <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                                                                                                                                                                                                                                                      Starting From
+                                                                                                                                                                                                                                                                                              </p>
+
+                                                                                                                                                                                                                                                                                                      <h4 className="mt-1 text-xl font-bold text-brand-emerald">
+                                                                                                                                                                                                                                                                                                                ₹15.95 Lakh
+                                                                                                                                                                                                                                                                                                                        </h4>
+                                                                                                                                                                                                                                                                                                                              </div>
+
+                                                                                                                                                                                                                                                                                                                                    {/* Floating Status Card */}
+                                                                                                                                                                                                                                                                                                                                          <div className="absolute -bottom-4 right-6 rounded-2xl border border-brand-border bg-white px-5 py-4 shadow-xl">
+                                                                                                                                                                                                                                                                                                                                                  <p className="text-xs uppercase tracking-wide text-gray-500">
+                                                                                                                                                                                                                                                                                                                                                            Status
+                                                                                                                                                                                                                                                                                                                                                                    </p>
+
+                                                                                                                                                                                                                                                                                                                                                                            <h4 className="mt-1 font-semibold text-green-600">
+                                                                                                                                                                                                                                                                                                                                                                                      Booking Open
+                                                                                                                                                                                                                                                                                                                                                                                              </h4>
+                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                          );
+                                                                                                                                                                                                                                                                                                                                                                                                          }
