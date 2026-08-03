@@ -2,152 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ==========================
-   Root Variables
-   ========================== */
+/* =========================
+   CSS Variables
+========================= */
 
-   :root {
-     --background: #faf9f5;
-       --surface: #ffffff;
+:root {
+  --background: #ffffff;
+  --foreground: #1f2937;
 
-         --primary: #122921;
-           --primary-light: #1b3d32;
+  --brand-gold: #c9a227;
+  --brand-gold-hover: #b08c1f;
 
-             --secondary: #c8a261;
-               --secondary-hover: #b58f4e;
+  --brand-emerald: #0f3d3e;
+  --brand-parchment: #f8f6f1;
+  --brand-border: #e5e7eb;
+}
 
-                 --text-primary: #111827;
-                   --text-secondary: #6b7280;
-                     --text-muted: #9ca3af;
+/* =========================
+   Base
+========================= */
 
-                       --border: #e5e7eb;
+html {
+  scroll-behavior: smooth;
+}
 
-                         --success: #16a34a;
-                           --warning: #f59e0b;
-                             --error: #dc2626;
-                             }
+body {
+  background: var(--background);
+  color: var(--foreground);
 
-                             /* ==========================
-                                Base
-                                ========================== */
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
 
-                                *,
-                                *::before,
-                                *::after {
-                                  box-sizing: border-box;
-                                  }
+  text-rendering: optimizeLegibility;
+}
 
-                                  html {
-                                    scroll-behavior: smooth;
-                                    }
+/* =========================
+   Selection
+========================= */
 
-                                    body {
-                                      margin: 0;
-                                        padding: 0;
-                                          background: var(--background);
-                                            color: var(--text-primary);
-                                              font-family: var(--font-jakarta), sans-serif;
-                                                overflow-x: hidden;
-                                                  text-rendering: optimizeLegibility;
-                                                    -webkit-font-smoothing: antialiased;
-                                                    }
+::selection {
+  background: var(--brand-gold);
+  color: white;
+}
 
-                                                    /* ==========================
-                                                       Typography
-                                                       ========================== */
+/* =========================
+   Components
+========================= */
 
-                                                       h1,
-                                                       h2,
-                                                       h3,
-                                                       h4,
-                                                       h5,
-                                                       h6 {
-                                                         font-family: var(--font-cormorant), serif;
-                                                           color: var(--text-primary);
-                                                             margin: 0;
-                                                             }
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
 
-                                                             p {
-                                                               color: var(--text-secondary);
-                                                                 line-height: 1.8;
-                                                                 }
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
 
-                                                                 a {
-                                                                   color: inherit;
-                                                                     text-decoration: none;
-                                                                     }
+  .heading-primary {
+    @apply text-4xl font-bold text-brand-emerald sm:text-5xl;
+  }
 
-                                                                     img {
-                                                                       display: block;
-                                                                         max-width: 100%;
-                                                                           height: auto;
-                                                                           }
-
-                                                                           /* ==========================
-                                                                              Scrollbar
-                                                                              ========================== */
-
-                                                                              ::-webkit-scrollbar {
-                                                                                width: 8px;
-                                                                                }
-
-                                                                                ::-webkit-scrollbar-track {
-                                                                                  background: #ececec;
-                                                                                  }
-
-                                                                                  ::-webkit-scrollbar-thumb {
-                                                                                    background: var(--secondary);
-                                                                                      border-radius: 999px;
-                                                                                      }
-
-                                                                                      ::-webkit-scrollbar-thumb:hover {
-                                                                                        background: var(--secondary-hover);
-                                                                                        }
-
-                                                                                        /* ==========================
-                                                                                           Text Selection
-                                                                                           ========================== */
-
-                                                                                           ::selection {
-                                                                                             background: var(--secondary);
-                                                                                               color: white;
-                                                                                               }
-
-                                                                                               /* ==========================
-                                                                                                  Reusable Utilities
-                                                                                                  ========================== */
-
-                                                                                                  .section-padding {
-                                                                                                    padding: 5rem 1rem;
-                                                                                                    }
-
-                                                                                                    .container-custom {
-                                                                                                      width: 100%;
-                                                                                                        max-width: 1280px;
-                                                                                                          margin-inline: auto;
-                                                                                                          }
-
-                                                                                                          .glass {
-                                                                                                            backdrop-filter: blur(18px);
-                                                                                                              background: rgba(255,255,255,0.72);
-                                                                                                              }
-
-                                                                                                              .transition-default {
-                                                                                                                transition: all .3s ease;
-                                                                                                                }
-
-                                                                                                                /* ==========================
-                                                                                                                   Responsive
-                                                                                                                   ========================== */
-
-                                                                                                                   @media (min-width:640px){
-                                                                                                                     .section-padding{
-                                                                                                                         padding:6rem 1.5rem;
-                                                                                                                           }
-                                                                                                                           }
-
-                                                                                                                           @media (min-width:1024px){
-                                                                                                                             .section-padding{
-                                                                                                                                 padding:7rem 2rem;
-                                                                                                                                   }
-                                                                                                                                   }
+  .heading-secondary {
+    @apply text-3xl font-bold text-brand-emerald;
+  }
+}
