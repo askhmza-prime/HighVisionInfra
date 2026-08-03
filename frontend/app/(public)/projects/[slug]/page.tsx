@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { PROJECTS_DATA, SITE_DETAILS } from "@/constants";
+import { PROJECTS_DATA } from "@/data/projects";
+import SITE from "@/constants/site";
 import { MapPin, ShieldCheck, CheckCircle2, ArrowLeft, Phone, Calendar } from "lucide-react";
-import BookingForm from "@/components/BookingForm";
+import BookingForm from "@/components/forms/BookingForm";
 
 interface ProjectPageProps {
   params: Promise<{
