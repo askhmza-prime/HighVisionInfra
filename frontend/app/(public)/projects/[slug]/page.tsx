@@ -13,7 +13,9 @@ interface ProjectPageProps {
 
 export default async function SingleProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = PROJECTS_DATA.find((p) => p.slug === slug);
+  const project = PROJECTS_DATA.find(
+    (p: (typeof PROJECTS_DATA)[number]) => p.slug === slug
+  );
 
   if (!project) {
     notFound();
@@ -113,10 +115,10 @@ export default async function SingleProjectPage({ params }: ProjectPageProps) {
             <div className="mt-6 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center space-y-2">
               <p className="text-xs text-gray-500">Need immediate assistance?</p>
               <a
-                href={`tel:${SITE_DETAILS.phone}`}
+                href={`tel:${SITE.phone}`}
                 className="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:text-brand-gold transition-colors"
               >
-                <Phone className="w-4 h-4" /> Call Direct: {SITE_DETAILS.phone}
+                <Phone className="w-4 h-4" /> Call Direct: {SITE.phone}
               </a>
             </div>
           </div>
@@ -125,3 +127,4 @@ export default async function SingleProjectPage({ params }: ProjectPageProps) {
     </main>
   );
 }
+            
