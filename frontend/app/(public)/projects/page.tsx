@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard from "@/components/cards/ProjectCard";
 import { PROJECTS_DATA } from "@/constants";
 import { Search, SlidersHorizontal } from "lucide-react";
 
