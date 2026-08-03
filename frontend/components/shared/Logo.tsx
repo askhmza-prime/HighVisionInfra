@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Building2 from "lucide-react/dist/esm/icons/building-2";
+import { Building2 } from "lucide-react";
 
 export default function Logo() {
   return (
