@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ProjectCard from "@/components/cards/ProjectCard";
-import { PROJECTS_DATA } from "@/constants";
+import { PROJECTS_DATA } from "@/data/projects";
 import { Search, SlidersHorizontal } from "lucide-react";
 
 export default function ProjectsPage() {
