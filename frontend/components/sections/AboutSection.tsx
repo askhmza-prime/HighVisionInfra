@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export default function AboutPreview() {
+export default function AboutSection() {
   return (
       <section className="bg-brand-parchment py-20">
             <div className="container-custom">
