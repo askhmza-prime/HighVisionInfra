@@ -26,13 +26,13 @@ export default function NotFound() {
             Back Home
           </Link>
 
-          <button
-            onClick={() => history.back()}
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-gold px-6 py-3 font-semibold text-brand-emerald transition hover:bg-brand-gold hover:text-white"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Go Back
-          </button>
+          <Link
+  href="/"
+  className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-gold px-6 py-3 font-semibold text-brand-emerald transition hover:bg-brand-gold hover:text-white"
+>
+  <ArrowLeft className="h-5 w-5" />
+  Go Home
+</Link>
         </div>
       </div>
     </main>
