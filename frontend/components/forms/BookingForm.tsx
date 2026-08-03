@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Calendar, Clock, MapPin, User, Phone, Mail, CheckCircle2 } from "lucide-react";
-import { PROJECTS_DATA } from "@/constants";
+import { PROJECTS_DATA } from "@/data/projects";
 
 export default function BookingForm() {
   const [submitted, setSubmitted] = useState(false);
