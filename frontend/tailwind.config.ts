@@ -18,7 +18,7 @@ const config: Config = {
           gold: "#C9A227",
           goldHover: "#B08C1F",
           emerald: "#0F3D3E",
-          slate: "#1E293B",
+          slate: "#1E2937",
           parchment: "#F8F6F1",
           border: "#E5E7EB",
         },
