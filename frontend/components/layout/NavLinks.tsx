@@ -20,7 +20,7 @@ export default function NavLinks({
       aria-label="Primary Navigation"
       className={cn(
         mobile
-          ? "flex flex-col gap-2"
+          ? "flex flex-col gap-1"
           : "flex items-center gap-1 xl:gap-2"
       )}
     >
@@ -35,18 +35,34 @@ export default function NavLinks({
             href={item.href}
             onClick={onNavigate}
             className={cn(
-              "rounded-xl font-medium transition-all duration-300",
+              "group relative font-medium transition-colors duration-300",
 
               mobile
-                ? "px-4 py-3 text-base"
-                : "px-4 py-2 text-sm",
+                ? "rounded-xl px-4 py-3.5 text-base"
+                : "rounded-lg px-3 py-2.5 text-sm",
 
               isActive
-                ? "bg-brand-gold text-white shadow-md"
-                : "text-gray-700 hover:bg-gray-100 hover:text-brand-emerald"
+                ? "text-brand-emerald"
+                : "text-slate-600 hover:text-brand-emerald",
+
+              mobile &&
+                (isActive
+                  ? "bg-brand-parchment"
+                  : "hover:bg-brand-parchment")
             )}
           >
-            {item.label}
+            <span>{item.label}</span>
+
+            {!mobile && (
+              <span
+                className={cn(
+                  "absolute bottom-0 left-3 right-3 h-[2px] origin-center rounded-full bg-brand-gold transition-transform duration-300",
+                  isActive
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                )}
+              />
+            )}
           </Link>
         );
       })}
