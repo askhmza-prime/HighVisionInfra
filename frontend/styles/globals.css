@@ -3,18 +3,24 @@
 @tailwind utilities;
 
 /* =========================
-   CSS Variables
+   High Vision Infra
+   Global Design System
 ========================= */
 
 :root {
-  --background: #ffffff;
+  --background: #f8f6f1;
   --foreground: #1f2937;
+
+  --brand-emerald: #0f3d3e;
+  --brand-emerald-light: #164f50;
 
   --brand-gold: #c9a227;
   --brand-gold-hover: #b08c1f;
 
-  --brand-emerald: #0f3d3e;
+  --brand-white: #ffffff;
   --brand-parchment: #f8f6f1;
+  --brand-slate: #1f2937;
+
   --brand-border: #e5e7eb;
 }
 
@@ -27,15 +33,23 @@ html {
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
 
-  font-family:
-    Inter,
-    system-ui,
-    sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Elegant display typography */
+
+h1,
+h2,
+h3,
+.display-font {
+  font-family: var(--font-cormorant), Georgia, serif;
 }
 
 /* =========================
@@ -44,7 +58,7 @@ body {
 
 ::selection {
   background: var(--brand-gold);
-  color: white;
+  color: var(--brand-white);
 }
 
 /* =========================
@@ -61,10 +75,14 @@ body {
   }
 
   .heading-primary {
-    @apply text-4xl font-bold text-brand-emerald sm:text-5xl;
+    @apply text-4xl font-semibold text-brand-emerald sm:text-5xl lg:text-6xl;
   }
 
   .heading-secondary {
-    @apply text-3xl font-bold text-brand-emerald;
+    @apply text-3xl font-semibold text-brand-emerald sm:text-4xl;
   }
-}
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold;
+  }
+   }
