@@ -23,31 +23,30 @@ export default function HeaderActions({
       <a
         href={`tel:${SITE.phone}`}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white font-medium text-gray-700 transition-all duration-300 hover:border-brand-gold hover:text-brand-emerald",
-
+          "group inline-flex items-center justify-center gap-2 rounded-xl border border-brand-border bg-white font-medium text-slate-600 transition-all duration-300 hover:border-brand-gold/50 hover:text-brand-emerald",
           mobile
-            ? "w-full px-4 py-3"
-            : "hidden xl:inline-flex px-4 py-2 text-sm"
+            ? "w-full px-4 py-3.5 text-sm"
+            : "hidden xl:inline-flex px-4 py-2.5 text-sm"
         )}
       >
-        <Phone className="h-4 w-4 text-brand-gold" />
+        <Phone className="h-4 w-4 text-brand-gold transition-transform duration-300 group-hover:scale-105" />
         <span>{SITE.phone}</span>
       </a>
 
       <Link
         href="/book-site-visit"
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl bg-brand-gold font-semibold text-white shadow-sm transition-all duration-300 hover:bg-brand-goldHover hover:shadow-lg",
-
+          "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-brand-emerald font-semibold text-white shadow-sm transition-all duration-300 hover:bg-brand-emerald/95 hover:shadow-premium",
           mobile
-            ? "w-full px-4 py-3"
+            ? "w-full px-4 py-3.5 text-sm"
             : "px-5 py-3 text-sm"
         )}
       >
-        <CalendarDays className="h-4 w-4" />
+        <CalendarDays className="relative z-10 h-4 w-4 text-brand-gold" />
+        <span className="relative z-10">Book Site Visit</span>
 
-        <span>Book Site Visit</span>
+        <span className="absolute inset-y-0 left-0 w-0 bg-brand-gold transition-all duration-300 group-hover:w-full" />
       </Link>
     </div>
   );
-}
+          }
