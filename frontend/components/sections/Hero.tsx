@@ -3,24 +3,27 @@ import HeroImage from "./HeroImage";
 
 export default function Hero() {
   return (
-      <section
-            className="relative overflow-hidden bg-gradient-to-b from-white via-brand-parchment to-white"
-                  aria-labelledby="hero-heading"
-                      >
-                            {/* Background Glow */}
-                                  <div className="absolute inset-0 -z-10">
-                                          <div className="absolute left-1/2 top-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-brand-gold/10 blur-3xl" />
-                                                </div>
+    <section
+      className="relative overflow-hidden bg-brand-parchment"
+      aria-labelledby="hero-heading"
+    >
+      {/* Architectural accent */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 h-[520px] w-[520px] rounded-full border border-brand-gold/10"
+      />
 
-                                                      <div className="container-custom py-16 sm:py-20 lg:py-28">
-                                                              <div className="grid items-center gap-14 lg:grid-cols-2">
-                                                                        {/* Left */}
-                                                                                  <HeroContent />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-16 top-16 h-[360px] w-[360px] rounded-full border border-brand-emerald/5"
+      />
 
-                                                                                            {/* Right */}
-                                                                                                      <HeroImage />
-                                                                                                              </div>
-                                                                                                                    </div>
-                                                                                                                        </section>
-                                                                                                                          );
-                                                                                                                          }
+      <div className="container-custom relative py-14 sm:py-20 lg:py-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <HeroContent />
+          <HeroImage />
+        </div>
+      </div>
+    </section>
+  );
+}
