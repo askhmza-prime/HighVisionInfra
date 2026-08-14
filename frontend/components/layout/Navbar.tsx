@@ -11,40 +11,34 @@ import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const pathname = usePathname();
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
-        <div className="container-custom flex h-20 items-center justify-between">
-          {/* Logo */}
+      <header className="sticky top-0 z-50 border-b border-brand-border/70 bg-white/90 backdrop-blur-xl">
+        <div className="container-custom flex h-[76px] items-center justify-between">
           <Logo />
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:block">
             <NavLinks pathname={pathname} />
           </div>
 
-          {/* Desktop Actions */}
           <div className="hidden lg:block">
             <HeaderActions />
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
-            aria-label="Open Menu"
+            aria-label="Open navigation menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen(true)}
-            className="rounded-lg p-2 transition hover:bg-gray-100 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-border bg-white text-brand-emerald transition-all duration-300 hover:border-brand-gold hover:text-brand-gold lg:hidden"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-5 w-5" />
           </button>
         </div>
       </header>
 
-      {/* Mobile Navigation */}
       <MobileMenu
         isOpen={isMenuOpen}
         currentPath={pathname}
