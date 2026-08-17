@@ -1,164 +1,211 @@
 "use client";
 
-import { useState } from "react";
-import { Calendar, Clock, MapPin, User, Phone, Mail, CheckCircle2 } from "lucide-react";
+import { FormEvent, useEffect, useState } from "react";
+import { CalendarDays, Mail, Phone, User } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+
 import { PROJECTS_DATA } from "@/data/projects";
 
 export default function BookingForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
-    email: "",
-    preferredProject: PROJECTS_DATA[0]?.title || "",
-    preferredDate: "",
-    preferredTime: "10:00 AM",
-  });
+  const searchParams = useSearchParams();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Connect to backend API / WhatsApp redirect here
+  const projectFromUrl = searchParams.get("project") ?? "";
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const [project, setProject] = useState(projectFromUrl);
+
+  useEffect(() => {
+    setProject(projectFromUrl);
+  }, [projectFromUrl]);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    // Phase 1:
+    // frontend-only submission state.
+    // Backend storage will be connected in Phase 2.
+
     setSubmitted(true);
-  };
+  }
+
+  if (submitted) {
+    return (
+      <div className="rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-card sm:p-12">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-2xl text-green-600">
+          ✓
+        </div>
+
+        <h2 className="mt-6 text-2xl font-bold text-brand-emerald">
+          Request Received
+        </h2>
+
+        <p className="mx-auto mt-3 max-w-lg leading-7 text-gray-500">
+          Thank you. Your site visit request has been recorded in this
+          frontend prototype. Actual lead storage will be connected in
+          Phase 2.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => setSubmitted(false)}
+          className="mt-7 rounded-xl bg-brand-gold px-6 py-3 font-semibold text-white transition hover:bg-brand-goldHover"
+        >
+          Submit Another Request
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white rounded-2xl p-6 md:p-10 border border-brand-border/60 shadow-xl max-w-xl mx-auto">
-      {submitted ? (
-        <div className="text-center py-10 space-y-4">
-          <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle2 className="w-10 h-10" />
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900">Site Visit Requested!</h3>
-          <p className="text-sm text-gray-600 max-w-md mx-auto">
-            Thank you, <span className="font-semibold text-brand-emerald">{formData.fullName}</span>. 
-            Our relationship executive will contact you shortly on{" "}
-            <span className="font-semibold">{formData.phoneNumber}</span> to confirm your cab pickup.
-          </p>
-          <button
-            onClick={() => setSubmitted(false)}
-            className="mt-4 px-6 py-2 bg-brand-emerald text-white rounded-lg text-sm font-semibold hover:bg-brand-slate transition-colors"
-          >
-            Book Another Visit
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="text-center space-y-1 mb-6">
-            <span className="text-xs font-semibold tracking-widest text-brand-gold uppercase">
-              Schedule A Free Cab Tour
+    <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-card sm:p-8">
+      <h2 className="text-2xl font-bold text-brand-emerald">
+        Site Visit Details
+      </h2>
+
+      <p className="mt-2 text-sm text-gray-500">
+        Fill in the details below and our team can contact you.
+      </p>
+
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Name */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Full Name
             </span>
-            <h2 className="text-2xl font-extrabold text-brand-emerald">
-              Book Your Free Site Visit
-            </h2>
-            <p className="text-xs text-gray-500">
-              Pick a date & time. We will arrange free pick-and-drop transportation.
-            </p>
-          </div>
 
-          {/* Full Name */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Full Name *
-            </label>
             <div className="relative">
-              <User className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <User className="absolute left-3 top-3.5 h-5 w-5 text-brand-gold" />
+
               <input
+                required
+                name="name"
                 type="text"
-                required
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                placeholder="Enter your name"
-                className="w-full pl-10 pr-4 py-2.5 bg-brand-parchment/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-gold"
+                placeholder="Your name"
+                className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 outline-none transition focus:border-brand-gold"
               />
             </div>
-          </div>
+          </label>
 
-          {/* Phone Number */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Mobile Number *
-            </label>
+          {/* Phone */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Mobile Number
+            </span>
+
             <div className="relative">
-              <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Phone className="absolute left-3 top-3.5 h-5 w-5 text-brand-gold" />
+
               <input
-                type="tel"
                 required
-                value={formData.phoneNumber}
-                onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                placeholder="+91 98765 43210"
-                className="w-full pl-10 pr-4 py-2.5 bg-brand-parchment/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-gold"
+                name="phone"
+                type="tel"
+                placeholder="+91"
+                className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 outline-none transition focus:border-brand-gold"
               />
             </div>
-          </div>
+          </label>
 
-          {/* Select Project */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Select Preferred Project *
-            </label>
+          {/* Email */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Email
+            </span>
+
             <div className="relative">
-              <MapPin className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <select
-                value={formData.preferredProject}
-                onChange={(e) => setFormData({ ...formData, preferredProject: e.target.value })}
-                className="w-full pl-10 pr-4 py-2.5 bg-brand-parchment/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-gold text-gray-700 appearance-none"
-              >
-                {PROJECTS_DATA.map((proj) => (
-                  <option key={proj.id} value={proj.title}>
-                    {proj.title} ({proj.location})
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+              <Mail className="absolute left-3 top-3.5 h-5 w-5 text-brand-gold" />
 
-          {/* Date & Time Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">
-                Preferred Date *
-              </label>
-              <div className="relative">
-                <Calendar className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="date"
-                  required
-                  value={formData.preferredDate}
-                  onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                  className="w-full pl-10 pr-4 py-2.5 bg-brand-parchment/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-gold text-gray-700"
-                />
-              </div>
+              <input
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 outline-none transition focus:border-brand-gold"
+              />
             </div>
+          </label>
 
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">
-                Time Slot
-              </label>
-              <div className="relative">
-                <Clock className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <select
-                  value={formData.preferredTime}
-                  onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                  className="w-full pl-10 pr-4 py-2.5 bg-brand-parchment/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-brand-gold text-gray-700 appearance-none"
-                >
-                  <option>10:00 AM</option>
-                  <option>12:00 PM</option>
-                  <option>02:30 PM</option>
-                  <option>05:00 PM</option>
-                </select>
-              </div>
+          {/* Project */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Preferred Project
+            </span>
+
+            <select
+              required
+              name="project"
+              value={project}
+              onChange={(event) => setProject(event.target.value)}
+              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none transition focus:border-brand-gold"
+            >
+              <option value="">Select a project</option>
+
+              {PROJECTS_DATA.map((item) => (
+                <option key={item.id} value={item.slug}>
+                  {item.title}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {/* Date */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Preferred Date
+            </span>
+
+            <div className="relative">
+              <CalendarDays className="absolute left-3 top-3.5 h-5 w-5 text-brand-gold" />
+
+              <input
+                required
+                name="date"
+                type="date"
+                className="w-full rounded-xl border border-gray-200 py-3 pl-11 pr-4 outline-none transition focus:border-brand-gold"
+              />
             </div>
-          </div>
+          </label>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-emerald font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-2"
-          >
-            Confirm & Reserve Free Cab
-          </button>
-        </form>
-      )}
+          {/* Time */}
+          <label className="block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              Preferred Time
+            </span>
+
+            <input
+              required
+              name="time"
+              type="time"
+              className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-brand-gold"
+            />
+          </label>
+        </div>
+
+        {/* Message */}
+        <label className="block">
+          <span className="mb-2 block text-sm font-medium text-gray-700">
+            Message
+          </span>
+
+          <textarea
+            name="message"
+            rows={4}
+            placeholder="Anything you'd like us to know?"
+            className="w-full resize-none rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-brand-gold"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="w-full rounded-xl bg-brand-gold px-6 py-4 font-semibold text-white transition hover:bg-brand-goldHover"
+        >
+          Request Site Visit
+        </button>
+
+        <p className="text-center text-xs text-gray-400">
+          Secure frontend form • Lead storage will be connected in Phase 2.
+        </p>
+      </form>
     </div>
   );
-}
+      }
