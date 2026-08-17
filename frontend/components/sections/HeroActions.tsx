@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
 
+import SITE from "@/constants/site";
 export default function HeroActions() {
   return (
     <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
