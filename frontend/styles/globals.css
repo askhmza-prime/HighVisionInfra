@@ -67,22 +67,25 @@ h3,
 
 @layer components {
   .container-custom {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  .section-padding {
-    @apply py-20 lg:py-28;
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
-  .heading-primary {
-    @apply text-4xl font-semibold text-brand-emerald sm:text-5xl lg:text-6xl;
-  }
-
-  .heading-secondary {
-    @apply text-3xl font-semibold text-brand-emerald sm:text-4xl;
-  }
-
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold;
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
    }
