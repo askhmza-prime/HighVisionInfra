@@ -1,22 +1,34 @@
-import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
+import "@/styles/globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  display: "swap",
-});
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "High Vision Infra",
-  description: "Premium Real Estate & Infrastructure",
+  metadataBase: new URL("https://highvisioninfra.com"),
+
+  title: {
+    default: "High Vision Infra | Where Luxury Meets Comfort",
+    template: "%s | High Vision Infra",
+  },
+
+  description:
+    "High Vision Infra is a premium real estate developer offering residential, commercial and investment properties.",
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    title: "High Vision Infra",
+    description: "Where Luxury Meets Comfort.",
+    url: "https://highvisioninfra.com",
+    siteName: "High Vision Infra",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cormorant.variable}`}>
+      <body className="min-h-screen bg-brand-parchment text-gray-900 antialiased">
+        <Navbar />
+
         {children}
+
+        <Footer />
       </body>
     </html>
   );
-  }
+}
