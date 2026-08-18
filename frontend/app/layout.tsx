@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-
 import "@/styles/globals.css";
-
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://highvisioninfra.com"),
@@ -39,11 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-brand-parchment text-gray-900 antialiased">
-        <Navbar />
-
         {children}
-
-        <Footer />
       </body>
     </html>
   );
